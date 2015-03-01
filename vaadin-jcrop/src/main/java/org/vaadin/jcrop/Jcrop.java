@@ -68,12 +68,6 @@ public class Jcrop extends AbstractJavaScriptComponent {
         triggerRepaint();
     }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        triggerRepaint();
-    }
-
     /**
      * get the current selection state
      *
