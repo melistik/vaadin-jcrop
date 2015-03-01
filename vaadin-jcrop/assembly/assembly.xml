@@ -6,7 +6,7 @@
     <id>addon</id>
 
     <!-- Note: the base directory for this assembly descriptor is one of the
-    license specific subprojects -->
+        license specific subprojects -->
 
     <formats>
         <format>zip</format>

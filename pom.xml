@@ -11,6 +11,10 @@
         <module>vaadin-jcrop-sample</module>
     </modules>
     <name>vaadin-jcrop-root</name>
+    <description>
+        Vaadin wrapper for the jQuery plugin Jcrop (https://github.com/tapmodo/Jcrop)
+    </description>
+    <url>https://github.com/melistik/vaadin-jcrop</url>
 
 	<properties>
 		<vaadin.version>7.4.0</vaadin.version>
@@ -21,23 +25,47 @@
 
         <!-- MANIFEST settings -->
         <Implementation-Version>${project.version}</Implementation-Version>
-        <Implementation-Title>Jcrop-Wrapper Add-on</Implementation-Title>
+        <Implementation-Title>Jcrop-Wrapper</Implementation-Title>
         <Implementation-Vendor>Marten Prieß</Implementation-Vendor>
         <Vaadin-License-Title>The MIT License (MIT)</Vaadin-License-Title>
-        <Vaadin-Addon>${artifactId}.jar</Vaadin-Addon>
+        <Vaadin-Addon>${artifactId}-${project.version}.jar</Vaadin-Addon>
 	</properties>
-
-
-    <description>
-        Vaadin wrapper for the jQuery plugin Jcrop (https://github.com/tapmodo/Jcrop)
-    </description>
-    <url>https://github.com/melistik/vaadin-jcrop</url>
 
     <scm>
         <connection>scm:git:git@github.com:melistik/vaadin-jcrop.git</connection>
         <developerConnection>scm:git:git@github.com:melistik/vaadin-jcrop.git</developerConnection>
         <url>https://github.com/melistik/vaadin-jcrop.git</url>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>vaadin-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>vaadin-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <developers>
         <developer>
@@ -54,22 +82,5 @@
             <url>http://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
-
-	<repositories>
-		<repository>
-			<id>vaadin-addons</id>
-			<url>http://maven.vaadin.com/vaadin-addons</url>
-		</repository>
-		<repository>
-			<id>vaadin-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 </project>
