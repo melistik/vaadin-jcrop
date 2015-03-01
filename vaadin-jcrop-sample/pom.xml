@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.vaadin</groupId>
             <artifactId>vaadin-jcrop</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
