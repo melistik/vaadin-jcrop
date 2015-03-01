@@ -7,7 +7,17 @@ Vaadin wrapper for the jQuery plugin [Jcrop](https://github.com/tapmodo/Jcrop)
 Workflow
 ========
 
-Add the dependancy to your pom and start using it. There is no widgetset-compiliation needed.
+Add the dependency to your pom and start using it. There is no widgetset-compilation needed.
+
+```xml
+<dependency>
+    <groupId>org.vaadin</groupId>
+    <artifactId>vaadin-jcrop</artifactId>
+    <version>${vaadin-jcrop-version}</version>
+</dependency>
+```
+
+
 
 
 The MIT License (MIT)
