@@ -1,19 +1,19 @@
 package org.vaadin.jcrop;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.data.util.converter.Converter;
+import com.vaadin.data.util.converter.StringToFloatConverter;
 import com.vaadin.data.util.converter.StringToIntegerConverter;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.themes.ValoTheme;
 import org.vaadin.jcrop.selection.JcropSelection;
 import org.vaadin.jcrop.selection.JcropSelectionChanged;
+
+import javax.servlet.annotation.WebServlet;
 
 
 @Theme("valo")
@@ -22,21 +22,24 @@ public class JCropSampleUI extends UI {
     private Jcrop jcrop = new Jcrop();
     private Label listenerLabel = new Label("cropEvent: ");
 
-    private String[] imageUrls = new String[]{"http://www.softwareag.com/blog/reality_check/wp-content/uploads/2013/11/1317251262950612915clue_simple_clouds.png", "http://www.fotos.sc/img2/u/heliocentric/n/Kfer_Gras.jpg"};
+    private String[] imageUrls = new String[]{"./VAADIN/images/pic-1.jpg", "./VAADIN/images/pic-2.jpg", "./VAADIN/images/pic-3.jpg"};
     private int currentIndex = 1;
 
     private Button toggleEnabled;
-    private TextField minX = genNumberField("x", 0), minY = genNumberField("y", 0), maxX = genNumberField("x", 0), maxY = genNumberField("y", 0);
+    private TextField minX = genNumberField("x", "0", new StringToIntegerConverter()), minY = genNumberField("y", "0", new StringToIntegerConverter());
+    private TextField maxX = genNumberField("x", "0", new StringToIntegerConverter()), maxY = genNumberField("y", "0", new StringToIntegerConverter());
+    private TextField aspectRatio = genNumberField("aspectRatio", "0", new StringToFloatConverter());
 
-    private TextField genNumberField(String caption, int initValue) {
+    private TextField genNumberField(String caption, String initValue, Converter converter) {
         TextField textField = new TextField();
-        textField.setValue(String.valueOf(initValue));
-        textField.setConverter(new StringToIntegerConverter());
+        textField.setValue(initValue);
+        textField.setConverter(converter);
         textField.setInputPrompt(caption);
         textField.setImmediate(true);
         textField.setInvalidAllowed(false);
         textField.setValidationVisible(true);
-        textField.setWidth(40, Unit.PIXELS);
+        textField.setWidth(60, Unit.PIXELS);
+        textField.addStyleName(ValoTheme.TEXTFIELD_TINY);
         return textField;
     }
 
@@ -68,7 +71,7 @@ public class JCropSampleUI extends UI {
         buttonLayout.addComponent(new Button("switchImage", new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent clickEvent) {
-                jcrop.setImageUrl(imageUrls[(++currentIndex) % 2]);
+                jcrop.setImageUrl(imageUrls[(++currentIndex) % 3]);
             }
         }));
         toggleEnabled = new Button("toggle isEnabled", new Button.ClickListener() {
@@ -87,27 +90,34 @@ public class JCropSampleUI extends UI {
         layout.addComponent(buttonLayout);
 
         HorizontalLayout maxMinSizeLayout = new HorizontalLayout();
+        maxMinSizeLayout.setSpacing(true);
+
         maxMinSizeLayout.addComponent(new Label("minSize"));
         maxMinSizeLayout.addComponent(minX);
         maxMinSizeLayout.addComponent(minY);
-        maxMinSizeLayout.addComponent(new Label("minSize"));
+        maxMinSizeLayout.addComponent(new Label("maxSize"));
         maxMinSizeLayout.addComponent(maxX);
         maxMinSizeLayout.addComponent(maxY);
-        maxMinSizeLayout.addComponent(new Button("switchImage", new Button.ClickListener() {
+        maxMinSizeLayout.addComponent(new Label("aspectRatio"));
+        maxMinSizeLayout.addComponent(aspectRatio);
+        Button setMinMaxSelectionBtn = new Button("changeSettings", new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent clickEvent) {
-                System.out.print("minx: " + minX.getConvertedValue() + " minY:" + minY.getConvertedValue());
                 jcrop.setMinCropSize((int) minX.getConvertedValue(), (int) minY.getConvertedValue());
-                jcrop.setMinCropSize((int) maxX.getConvertedValue(), (int) maxY.getConvertedValue());
+                jcrop.setMaxCropSize((int) maxX.getConvertedValue(), (int) maxY.getConvertedValue());
+                jcrop.setAspectRatio((float) aspectRatio.getConvertedValue());
 
             }
-        }));
+        });
+        setMinMaxSelectionBtn.addStyleName(ValoTheme.BUTTON_TINY);
+        maxMinSizeLayout.addComponent(setMinMaxSelectionBtn);
         layout.addComponent(maxMinSizeLayout);
+
 
         layout.addComponent(listenerLabel);
 
-        jcrop.setWidth(600, Unit.PIXELS);
-        jcrop.setHeight(400, Unit.PIXELS);
+        jcrop.setWidth(750, Unit.PIXELS);
+        jcrop.setHeight(500, Unit.PIXELS);
         jcrop.setImageUrl(imageUrls[currentIndex]);
         layout.addComponent(jcrop);
         layout.setExpandRatio(jcrop, 1);

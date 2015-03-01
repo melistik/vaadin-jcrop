@@ -18,8 +18,8 @@ import java.util.List;
  * @author Marten Prieß (http://www.non-rocket-science.com)
  * @version 1.0
  */
-@StyleSheet("jquery.Jcrop.css")
-@JavaScript({"https://code.jquery.com/jquery-1.11.2.min.js", "jquery.Jcrop.js", "Jcrop.js"})
+@StyleSheet("vaadin://jcrop/jquery.Jcrop.min.css")
+@JavaScript({"vaadin://jcrop/jquery-1.11.2.min.js", "vaadin://jcrop/jquery.Jcrop.min.js", "Jcrop.js"})
 public class Jcrop extends AbstractJavaScriptComponent {
 
 
