@@ -44,7 +44,7 @@
         <Implementation-Title>Jcrop-Wrapper</Implementation-Title>
         <Implementation-Vendor>Marten Prieß</Implementation-Vendor>
         <Vaadin-License-Title>The MIT License (MIT)</Vaadin-License-Title>
-        <Vaadin-Addon>${artifactId}-${project.version}.jar</Vaadin-Addon>
+        <Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
 	</properties>
 
     <dependencies>
