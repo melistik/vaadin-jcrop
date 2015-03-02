@@ -16,6 +16,22 @@
     </description>
     <url>https://github.com/melistik/vaadin-jcrop</url>
 
+    <developers>
+        <developer>
+            <name>Marten Prieß</name>
+            <email>info@non-rocket-science.com</email>
+            <organization>Non-Rocket-Science.com</organization>
+            <url>http://www.non-rocket-science.com</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
 	<properties>
 		<vaadin.version>7.4.0</vaadin.version>
 		<jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
@@ -30,6 +46,19 @@
         <Vaadin-License-Title>The MIT License (MIT)</Vaadin-License-Title>
         <Vaadin-Addon>${artifactId}-${project.version}.jar</Vaadin-Addon>
 	</properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-api</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+    </dependencies>
 
     <scm>
         <connection>scm:git:git@github.com:melistik/vaadin-jcrop.git</connection>
@@ -66,21 +95,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
-    <developers>
-        <developer>
-            <name>Marten Prieß</name>
-            <email>info@non-rocket-science.com</email>
-            <organization>Non-Rocket-Science.com</organization>
-            <url>http://www.non-rocket-science.com</url>
-        </developer>
-    </developers>
-
-    <licenses>
-        <license>
-            <name>The MIT License (MIT)</name>
-            <url>http://opensource.org/licenses/MIT</url>
-        </license>
-    </licenses>
 
 </project>
