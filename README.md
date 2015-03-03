@@ -4,7 +4,7 @@ Vaadin jCrop
 Vaadin wrapper for the jQuery plugin [Jcrop](https://github.com/tapmodo/Jcrop)
 
 
-![showcase](melistik.github.com/vaadin-jcrop/showcase.gif)
+![showcase](showcase.gif)
 
 
 Workflow
