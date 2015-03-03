@@ -4,6 +4,9 @@ Vaadin jCrop
 Vaadin wrapper for the jQuery plugin [Jcrop](https://github.com/tapmodo/Jcrop)
 
 
+![showcase](melistik.github.com/vaadin-jcrop/showcase.gif)
+
+
 Workflow
 ========
 
@@ -17,8 +20,7 @@ Add the dependency to your pom and start using it. There is no widgetset-compila
 </dependency>
 ```
 
-
-
+Details to the addon you can find on [Vaadin](https://vaadin.com/directory#addon/jcrop-wrapper)
 
 The MIT License (MIT)
 -------------------------
