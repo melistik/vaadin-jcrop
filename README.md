@@ -20,6 +20,19 @@ Add the dependency to your pom and start using it. There is no widgetset-compila
 </dependency>
 ```
 
+You can recolor the panel by changing the css like:
+
+```css
+.v-sliderpanel-wrapper .v-sliderpanel-content {
+  background: #99CCFF;
+  color: #000;
+}
+.v-sliderpanel-wrapper .v-sliderpanel-tab {
+  background: #B1E7FF;
+  color: #000;
+}
+```
+
 Details to the addon you can find on [Vaadin](https://vaadin.com/directory#addon/jcrop-wrapper)
 
 The MIT License (MIT)
