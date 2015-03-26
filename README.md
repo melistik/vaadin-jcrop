@@ -14,7 +14,7 @@ Add the dependency to your pom and start using it. There is no widgetset-compila
 
 ```xml
 <dependency>
-    <groupId>org.vaadin</groupId>
+    <groupId>org.vaadin.addons</groupId>
     <artifactId>vaadin-jcrop</artifactId>
     <version>${vaadin-jcrop-version}</version>
 </dependency>
