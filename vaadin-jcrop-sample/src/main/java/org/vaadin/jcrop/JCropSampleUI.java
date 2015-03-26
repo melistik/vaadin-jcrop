@@ -61,7 +61,7 @@ public class JCropSampleUI extends UI {
 		HorizontalLayout buttonLayout = new HorizontalLayout();
 		buttonLayout.setSpacing(true);
 
-		buttonLayout.addComponent(new Button("setSelectio", new Button.ClickListener() {
+		buttonLayout.addComponent(new Button("setSelection", new Button.ClickListener() {
 			@Override
 			public void buttonClick(final ClickEvent clickEvent) {
 				JCropSampleUI.this.jcrop.setSelection(10, 10, 100, 50);
