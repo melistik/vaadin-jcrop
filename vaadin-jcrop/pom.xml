@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>vaadin-jcrop-root</artifactId>
-        <groupId>org.vaadin.addons</groupId>
-        <version>1.1.2-SNAPSHOT</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
+	<groupId>org.vaadin.addons</groupId>
     <artifactId>vaadin-jcrop</artifactId>
+    <version>1.1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Jcrop-Wrapper</name>
@@ -24,7 +21,21 @@
             <url>http://www.non-rocket-science.com</url>
         </developer>
     </developers>
+    
+    <properties>
+        <vaadin.version>7.4.0</vaadin.version>
+        <project.source.version>1.7</project.source.version>
+        <project.target.version>1.7</project.target.version>
+        <project.encoding>UTF-8</project.encoding>
 
+        <!-- MANIFEST settings -->
+        <Implementation-Version>${project.version}</Implementation-Version>
+        <Implementation-Title>Jcrop-Wrapper</Implementation-Title>
+        <Implementation-Vendor>Marten Prieß</Implementation-Vendor>
+        <Vaadin-License-Title>The MIT License (MIT)</Vaadin-License-Title>
+        <Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
+    </properties>
+    
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
@@ -49,6 +60,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <encoding>${project.encoding}</encoding>
+                    <source>${project.source.version}</source>
+                    <target>${project.target.version}</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
