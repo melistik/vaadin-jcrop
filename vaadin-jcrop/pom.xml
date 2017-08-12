@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-	<groupId>org.vaadin.addons</groupId>
+    <groupId>org.vaadin.addons</groupId>
     <artifactId>vaadin-jcrop</artifactId>
     <version>1.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -16,17 +17,18 @@
     <developers>
         <developer>
             <name>Marten Prieß</name>
-            <email>info@non-rocket-science.com</email>
-            <organization>Non-Rocket-Science.com</organization>
-            <url>http://www.non-rocket-science.com</url>
+            <email>marten@rocketbase.io</email>
+            <organization>rocketbase.io software productions</organization>
+            <url>http://www.rocketbase.io</url>
         </developer>
     </developers>
-    
+
     <properties>
         <vaadin.version>8.0.3</vaadin.version>
         <project.source.version>1.8</project.source.version>
         <project.target.version>1.8</project.target.version>
         <project.encoding>UTF-8</project.encoding>
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 
         <!-- MANIFEST settings -->
         <Implementation-Version>${project.version}</Implementation-Version>
@@ -35,7 +37,7 @@
         <Vaadin-License-Title>The MIT License (MIT)</Vaadin-License-Title>
         <Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
     </properties>
-    
+
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
@@ -70,10 +72,28 @@
                     <target>${project.target.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration> <!-- add this to disable checking -->
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.0.2</version>
                 <configuration>
                     <archive>
                         <index>true</index>
@@ -93,7 +113,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -107,7 +127,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>3.0.0</version>
                 <configuration>
                     <finalName>${project.artifactId}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>

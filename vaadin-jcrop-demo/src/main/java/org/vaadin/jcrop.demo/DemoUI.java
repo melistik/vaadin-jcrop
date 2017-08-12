@@ -1,30 +1,36 @@
-package org.vaadin.jcrop;
+package org.vaadin.jcrop.demo;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
+import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.ValoTheme;
+import org.vaadin.jcrop.Jcrop;
 import org.vaadin.jcrop.selection.JcropSelection;
 import org.vaadin.jcrop.selection.JcropSelectionChanged;
 
-import javax.servlet.annotation.WebServlet;
 
+@SpringUI()
 @Theme("valo")
-public class JCropSampleUI extends UI {
+public class DemoUI extends UI {
 
     private final Jcrop jcrop = new Jcrop();
+
     private final Label listenerLabel = new Label("cropEvent: ");
 
     private final String[] imageUrls = new String[]{"./VAADIN/images/pic-1.jpg", "./VAADIN/images/pic-2.jpg", "./VAADIN/images/pic-3.jpg"};
+
     private final TextField minX = genNumberField("x", "0"), minY = genNumberField("y", "0");
+
     private final TextField maxX = genNumberField("x", "0"), maxY = genNumberField("y", "0");
+
     private final TextField aspectRatio = genNumberField("aspectRatio", "0");
+
     private int currentIndex = 1;
+
     private Button toggleEnabled;
 
     private TextField genNumberField(final String caption, final String initValue) {
@@ -51,38 +57,38 @@ public class JCropSampleUI extends UI {
         buttonLayout.addComponent(new Button("setSelection", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent clickEvent) {
-                JCropSampleUI.this.jcrop.setSelection(10, 10, 100, 50);
+                DemoUI.this.jcrop.setSelection(10, 10, 100, 50);
             }
         }));
         buttonLayout.addComponent(new Button("clearSelection", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent clickEvent) {
-                JCropSampleUI.this.jcrop.clearSelection();
+                DemoUI.this.jcrop.clearSelection();
             }
         }));
         buttonLayout.addComponent(new Button("switchImage", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent clickEvent) {
-                JCropSampleUI.this.jcrop.setImageUrl(JCropSampleUI.this.imageUrls[(++JCropSampleUI.this.currentIndex) % 3]);
+                DemoUI.this.jcrop.setImageUrl(DemoUI.this.imageUrls[(++DemoUI.this.currentIndex) % 3]);
             }
         }));
 
         buttonLayout.addComponent(new Button("setResource", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent clickEvent) {
-                JCropSampleUI.this.jcrop.setResource(new StreamResource(new SampleStreamResource(), "sample-image.png"));
+                DemoUI.this.jcrop.setResource(new StreamResource(new SampleStreamResource(), "sample-image.png"));
             }
         }));
         this.toggleEnabled = new Button("toggle isEnabled", new Button.ClickListener() {
             @Override
             public void buttonClick(final ClickEvent clickEvent) {
-                if (JCropSampleUI.this.toggleEnabled.getCaption()
+                if (DemoUI.this.toggleEnabled.getCaption()
                         .contains("isEnabled")) {
-                    JCropSampleUI.this.jcrop.setEnabled(false);
-                    JCropSampleUI.this.toggleEnabled.setCaption("toggle isDisabled");
+                    DemoUI.this.jcrop.setEnabled(false);
+                    DemoUI.this.toggleEnabled.setCaption("toggle isDisabled");
                 } else {
-                    JCropSampleUI.this.jcrop.setEnabled(true);
-                    JCropSampleUI.this.toggleEnabled.setCaption("toggle isEnabled");
+                    DemoUI.this.jcrop.setEnabled(true);
+                    DemoUI.this.toggleEnabled.setCaption("toggle isEnabled");
                 }
             }
         });
@@ -101,9 +107,9 @@ public class JCropSampleUI extends UI {
         maxMinSizeLayout.addComponent(new Label("aspectRatio"));
         maxMinSizeLayout.addComponent(this.aspectRatio);
         Button setMinMaxSelectionBtn = new Button("changeSettings", (ClickListener) clickEvent -> {
-            JCropSampleUI.this.jcrop.setMinCropSize(Integer.parseInt(JCropSampleUI.this.minX.getValue()), Integer.parseInt(JCropSampleUI.this.minY.getValue()));
-            JCropSampleUI.this.jcrop.setMaxCropSize(Integer.parseInt(JCropSampleUI.this.maxX.getValue()), Integer.parseInt(JCropSampleUI.this.maxY.getValue()));
-            JCropSampleUI.this.jcrop.setAspectRatio(Integer.parseInt(JCropSampleUI.this.aspectRatio.getValue()));
+            DemoUI.this.jcrop.setMinCropSize(Integer.parseInt(DemoUI.this.minX.getValue()), Integer.parseInt(DemoUI.this.minY.getValue()));
+            DemoUI.this.jcrop.setMaxCropSize(Integer.parseInt(DemoUI.this.maxX.getValue()), Integer.parseInt(DemoUI.this.maxY.getValue()));
+            DemoUI.this.jcrop.setAspectRatio(Integer.parseInt(DemoUI.this.aspectRatio.getValue()));
 
         });
         setMinMaxSelectionBtn.addStyleName(ValoTheme.BUTTON_TINY);
@@ -120,19 +126,10 @@ public class JCropSampleUI extends UI {
         this.jcrop.addListener(new JcropSelectionChanged() {
             @Override
             public void selectionChanged(final JcropSelection selection) {
-                JCropSampleUI.this.listenerLabel.setValue(selection.toString());
+                DemoUI.this.listenerLabel.setValue(selection.toString());
             }
         });
 
     }
 
-    @WebServlet(
-            urlPatterns = "/*",
-            name = "JCropSampleUIServlet",
-            asyncSupported = true)
-    @VaadinServletConfiguration(
-            ui = org.vaadin.jcrop.JCropSampleUI.class,
-            productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
 }
